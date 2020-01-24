@@ -21,4 +21,7 @@ class User extends Equatable {
     @required this.token,
     @required this.type,
   }) : super([username, name, email, role, token, type]);
+
+  @override
+  List<Object> get props => [username, name, email, role, token, type];
 }
