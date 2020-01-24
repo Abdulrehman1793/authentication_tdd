@@ -31,6 +31,7 @@ void main() {
     name: "Khan Abdulrehman",
     email: "abdulrehman1793@gmail.com",
     username: "abdulrehman1793",
+    role: null,
     token:
         "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc5NTA0MzI1LCJleHAiOjE1ODAxMDkxMjV9.ceiQwaIaVAOxp2NXRowl_RQ5Qtq3wqQkbK0zBswuIFIS2t_Rr7e_T8JJZbOKIO0zNfZkUar__1bWqCac0DNcnQ",
     type: "Bearer",
@@ -71,9 +72,9 @@ void main() {
     );
   });
 
-  group('toJson', () {
+  group('toJson-should return a JSON map containing the proper data', () {
     test(
-      'should return a JSON map containing the proper data',
+      'Single role',
       () async {
         // act
         final result = userModel.toJson();
@@ -93,7 +94,7 @@ void main() {
     );
 
     test(
-      'should return a JSON map containing the proper data',
+      'Multiple role',
       () async {
         // act
         final result = userMultiRoleModel.toJson();
@@ -103,7 +104,27 @@ void main() {
           "name": "Khan Abdulrehman",
           "email": "abdulrehman1793@gmail.com",
           "username": "abdulrehman1793",
-          "role": ['User','Admin'],
+          "role": ['User', 'Admin'],
+          "token":
+              "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc5NTA0MzI1LCJleHAiOjE1ODAxMDkxMjV9.ceiQwaIaVAOxp2NXRowl_RQ5Qtq3wqQkbK0zBswuIFIS2t_Rr7e_T8JJZbOKIO0zNfZkUar__1bWqCac0DNcnQ",
+          "type": "Bearer",
+        };
+        expect(result, expectedMap);
+      },
+    );
+
+    test(
+      'No Role',
+      () async {
+        // act
+        final result = userNoRoleModel.toJson();
+
+        // assert
+        final expectedMap = {
+          "name": "Khan Abdulrehman",
+          "email": "abdulrehman1793@gmail.com",
+          "username": "abdulrehman1793",
+          "role": null,
           "token":
               "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc5NTA0MzI1LCJleHAiOjE1ODAxMDkxMjV9.ceiQwaIaVAOxp2NXRowl_RQ5Qtq3wqQkbK0zBswuIFIS2t_Rr7e_T8JJZbOKIO0zNfZkUar__1bWqCac0DNcnQ",
           "type": "Bearer",
